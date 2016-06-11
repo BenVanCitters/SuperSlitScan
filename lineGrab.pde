@@ -55,16 +55,16 @@ PImage getPixelStripBetweenPts(PImage frame, double[] pointNorm1, double[] point
     }
     else
     {
-      println("wtf, img.pixels is not there?!?!"); 
+      logCon("wtf, img.pixels is not there?!?!"); 
     }
     result.updatePixels();
   }
   else
   {
-   println("wtf, tmp.pixels is not there?!?!"); 
+   logCon("wtf, tmp.pixels is not there?!?!"); 
   }
   double elapsedSeconds = (System.nanoTime()-startNanos)/(nanoSecondsPerSecond*1.0);
-  println("getPixelStripBetweenPts elapsedSeconds: " + elapsedSeconds);
+  logCon("getPixelStripBetweenPts elapsedSeconds: " + elapsedSeconds);
   return result;
 //  float imgH = 500;
 //  image(result,0,height-imgH,width,imgH);

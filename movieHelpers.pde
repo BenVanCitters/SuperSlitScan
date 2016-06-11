@@ -15,9 +15,9 @@ void initMovie(String mvFilePath)
   movie.jump(0.0);
   movie.pause();
   movie.read();
-  println("opened movie with size (wxh): (" + movie.width + "x" + movie.height + ")");
+  logCon("opened movie with size (wxh): (" + movie.width + "x" + movie.height + ")");
   long mFrameCount = (long)(movie.duration()*getVideoFrameRate());
-  println("movie duration(sec): " + movie.duration() + "(" + mFrameCount + " frames)" );
+  logCon("movie duration(sec): " + movie.duration() + "(" + mFrameCount + " frames)" );
 //   movieIncrementTm = movie.duration()/backBuffer.width; //1/70??
 }
 
@@ -39,9 +39,9 @@ void incrementMovieTime()
     movie.play();
     movie.jump((float)currentMovieTime);
     movie.pause();
-    println("currentMovieTime: " + currentMovieTime + " curMovieFrame: " + curMovieFrame);
+    logCon("currentMovieTime: " + currentMovieTime + " curMovieFrame: " + curMovieFrame);
   }
-  println("currentMovieTime/30.01 = " + currentMovieTime*getVideoFrameRate());
+  logCon("currentMovieTime/30.01 = " + currentMovieTime*getVideoFrameRate());
 //  println("XXXXXXXXX currentMovieTime: " + currentMovieTime + " newFrameNum: " + newFrameNum + " curMovieFrame: " + curMovieFrame);
 }
 
