@@ -12,13 +12,16 @@ void initMovie(String mvFilePath)
   ///Volumes/Ben\'s\ Pictures/samsung\ galaxy\ s6\ active/april\ trip\ to\ amsterdam\ and\ SF/videos/pans/20160426_120149.mp4
   movie = new Movie(this, mvFilePath);
   movie.play();
-  movie.jump(0);
+  movie.jump(0.0);
   movie.pause();
   movie.read();
+  println("opened movie with size (wxh): (" + movie.width + "x" + movie.height + ")");
+  long mFrameCount = (long)(movie.duration()*getVideoFrameRate());
+  println("movie duration(sec): " + movie.duration() + "(" + mFrameCount + " frames)" );
 //   movieIncrementTm = movie.duration()/backBuffer.width; //1/70??
 }
 
-// does this even ever get called???
+// does this even ever get called??? ...what is the event???
 void movieEvent(Movie m) 
 {
 //  println("movieEvent got called");

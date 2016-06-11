@@ -8,7 +8,7 @@ void setup()
   
   initMovie("/Users/admin/Documents/Processing/componentColors/data/GOPR5008.MP4");
   
-  backBuffer = createGraphics(17*300,1080,P3D);
+  backBuffer = createGraphics(6391,975,P3D);
   movieIncrementTm = movie.duration()/backBuffer.width; //1/70??
 }
 
@@ -21,7 +21,7 @@ void draw()
   
   
 //  image(movie, 0, 0, width, height);
-grabLineAndDrawToBuffer();
+  grabLineAndDrawToBuffer();
   image(backBuffer,0,0,width,height);
   
   float tmRm = 1/(getPercentMovieComplete()/(millis()/1000.f));
@@ -40,60 +40,21 @@ void grabLineAndDrawToBuffer()
    { return; }
    
    PImage line = getPixelStripBetweenPts(movie, 
-                                         new double[] {0,0},
-                                         new double[] {1,1});
+                                         new double[] {0,1},
+                                         new double[] {1,0});
    if(currentBufferX < backBuffer.width)
     {
       backBuffer.beginDraw();
-      backBuffer.image(line,currentBufferX,0);
+      backBuffer.image(line,currentBufferX,0,1,backBuffer.height);
       incrementMovieTime();
       currentBufferX++;
       backBuffer.endDraw();
     }
 }
 
-
-void grabOneLine()
+void saveOutput()
 {
-  if(currentBufferX < backBuffer.width)
-  {
-    backBuffer.beginDraw();
-    
-    if (movie.available()) 
-    {
-      movie.loadPixels();
-      backBuffer.loadPixels();
-      for(int i = 0; i < movie.width; i++)
-      {
-        float normalizedMvIndex = i*1.0/movie.width;
-        int mvIndex = movie.pixels.length-movie.width+i;
-        float normalizedBufIndex = normalizedMvIndex * movie.height;
-        int bufferIndex = backBuffer.width*(int)normalizedBufIndex+currentBufferX;
-        if(bufferIndex < backBuffer.pixels.length)
-          backBuffer.pixels[bufferIndex] = movie.pixels[mvIndex];
-          else
-          { 
-  //          println("oh shit we fucked up? index:" + bufferIndex + " bufferpixLen: " +  backBuffer.pixels.length);
-          }
-      }
-      
-    incrementMovieTime();
-    currentBufferX++;
-    } 
-    else
-    {
-      println("movie.available() returned false");
-    }
-    backBuffer.updatePixels();
-    backBuffer.endDraw();
-  }
-  else
-  {
-    println("completed scan");
-  }
-}
-
-void saveOutput
-{
-  backBuffer.save("superSlitScan-"+year()+"-"+month()+"-"+day()+":"+hour()+":"+minute()+":"+second()+":"+millis() +".png");
+  String fileName = "superSlitScan-"+year()+"-"+month()+"-"+day()+":"+hour()+":"+minute()+":"+second()+":"+millis() +".png";
+  backBuffer.save(fileName);
+  println("File saved!: " + fileName);
 }
