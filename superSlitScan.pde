@@ -93,10 +93,7 @@ void grabOneLine()
   }
 }
 
-void keyPressed() {
-  
-  if (key == 's' ) {
-    backBuffer.save("superSlitScan-"+year()+"-"+month()+"-"+day()+":"+hour()+":"+minute()+":"+second()+":"+millis() +".png");   
-  }
-
+void saveOutput
+{
+  backBuffer.save("superSlitScan-"+year()+"-"+month()+"-"+day()+":"+hour()+":"+minute()+":"+second()+":"+millis() +".png");
 }
